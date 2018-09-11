@@ -35,7 +35,10 @@
       "http_directory": "http",
       "iso_checksum": "{{user `iso_checksum`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
-      "iso_url": "{{user `mirror`}}/{{user `mirror_directory`}}/{{user `iso_name`}}",
+      "iso_urls": [
+              "iso/ubuntu-18.04.1-server-amd64.iso",
+              "http://cdimage.ubuntu.com/ubuntu/releases/18.04.1/release/ubuntu-18.04.1-server-amd64.iso"
+            ],
       "output_directory": "../builds/packer-{{user `template`}}-virtualbox",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "ssh_password": "vagrant",
@@ -79,6 +82,7 @@
       "expect_disconnect": true,
       "scripts": [
         "scripts/update.sh",
+        "scripts/install.sh",
         "../_common/sshd.sh",
         "scripts/networking.sh",
         "scripts/sudoers.sh",
@@ -106,10 +110,7 @@
     "hyperv_switch": "{{env `hyperv_switch`}}",
     "iso_checksum": "a5b0ea5918f850124f3d72ef4b85bda82f0fcd02ec721be19c1a6952791c8ee8",
     "iso_checksum_type": "sha256",
-    "iso_name": "ubuntu-18.04.1-server-amd64.iso",
     "memory": "4096",
-    "mirror": "http://cdimage.ubuntu.com",
-    "mirror_directory": "ubuntu/releases/18.04.1/release",
     "name": "ubuntu-18.04",
     "no_proxy": "{{env `no_proxy`}}",
     "preseed_path": "preseed.cfg",
